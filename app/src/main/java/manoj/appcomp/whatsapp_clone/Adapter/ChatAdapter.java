@@ -113,7 +113,7 @@ public class ChatAdapter extends RecyclerView.Adapter{
         }
         else{
             ((ReceiverViewHolder)holder).receiverMsg.setText(messageModel.getMessage());
-            ((ReceiverViewHolder)holder).receiverTime.setText(messageModel.getMessage());
+            ((ReceiverViewHolder)holder).receiverTime.setText(strDate);
 
         }
     }

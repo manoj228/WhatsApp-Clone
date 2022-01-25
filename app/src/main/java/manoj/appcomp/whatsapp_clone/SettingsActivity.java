@@ -84,10 +84,16 @@ public class SettingsActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         Users users = snapshot.getValue(Users.class);
-                        Picasso.get()
-                                .load(users.getProfilePic())
-                                .placeholder(R.drawable.avatar)
-                                .into(binding.profileImage);
+                        try {
+                            Picasso.get()
+                                    .load(users.getProfilePic())
+                                    .placeholder(R.drawable.avatar)
+                                    .into(binding.profileImage);
+                        }
+                        catch (Exception e)
+                        {
+                            e.printStackTrace();
+                        }
 
                         binding.etStatus.setText(users.getStatus());
                         binding.txtUsername.setText(users.getUserName());

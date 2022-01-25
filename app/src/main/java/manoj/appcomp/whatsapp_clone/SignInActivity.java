@@ -10,6 +10,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.login.LoginResult;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -26,7 +33,13 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import manoj.appcomp.whatsapp_clone.Models.Users;
 import manoj.appcomp.whatsapp_clone.databinding.ActivitySignInBinding;
-import manoj.appcomp.whatsapp_clone.databinding.ActivitySignUpBinding;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+
+import org.json.JSONException;
+
+import java.util.Arrays;
+
 
 public class SignInActivity extends AppCompatActivity {
 
@@ -51,6 +64,18 @@ public class SignInActivity extends AppCompatActivity {
         progressDialog.setTitle("Login");
         progressDialog.setMessage("Validating Account is in progress");
 
+        //fb sign-in
+        binding.btnFacebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SignInActivity.this, FacebookAuthActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+            }
+        });
+
+
+        // google sign-in
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -156,5 +181,15 @@ public class SignInActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    public void signUpwithPhone(View view)
+    {
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SignInActivity.this, OTPMainActivity.class));
+            }
+        });
     }
 }

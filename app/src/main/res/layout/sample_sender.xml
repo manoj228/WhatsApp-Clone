@@ -54,7 +54,6 @@
             android:layout_marginRight="3dp"
             android:text="12:45pm"
             android:textSize="10sp"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/guideline2"
             />
